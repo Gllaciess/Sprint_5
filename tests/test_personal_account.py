@@ -1,0 +1,66 @@
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from locators.locators import Locators as locators
+
+
+class TestPersonalAccount:
+
+    def test_go_to_personal_account(self, login_user, driver):
+
+        driver.find_element(*locators.PERSONAL_ACCOUNT_BUTTON).click()
+
+        import time
+        time.sleep(2)
+        print("Текущий URL после клика на ЛК:", driver.current_url)
+
+        WebDriverWait(driver, 10).until(
+            EC.url_contains("stellarburgers.education-services.ru")
+        )
+
+        assert "stellarburgers.education-services.ru" in driver.current_url
+
+    def test_go_from_personal_account_to_constructor(self, driver, register_new_user):
+
+        email, password = register_new_user
+
+        driver.get("https://stellarburgers.education-services.ru/login")
+
+        driver.find_element(*locators.LOGIN_EMAIL_INPUT).send_keys(email)
+        driver.find_element(*locators.LOGIN_PASSWORD_INPUT).send_keys(password)
+        driver.find_element(*locators.LOGIN_BUTTON).click()
+
+        WebDriverWait(driver, 15).until(
+            EC.url_contains("stellarburgers.education-services.ru")
+        )
+
+        driver.find_element(*locators.PERSONAL_ACCOUNT_BUTTON).click()
+
+        WebDriverWait(driver, 15).until(
+            EC.url_contains("stellarburgers.education-services.ru")
+        )
+
+        driver.find_element(*locators.CONSTRUCTOR_BUTTON).click()
+
+        WebDriverWait(driver, 15).until(
+            EC.url_contains("stellarburgers.education-services.ru")
+        )
+
+        assert "stellarburgers.education-services.ru" in driver.current_url
+
+    def test_go_from_personal_account_to_logo(self, login_user, driver):
+
+        driver.find_element(*locators.PERSONAL_ACCOUNT_BUTTON).click()
+
+        WebDriverWait(driver, 15).until(
+            EC.url_contains("stellarburgers.education-services.ru")
+        )
+
+        driver.find_element(*locators.LOGO).click()
+
+        WebDriverWait(driver, 15).until(
+            EC.url_contains("stellarburgers.education-services.ru")
+        )
+
+        assert "stellarburgers.education-services.ru" in driver.current_url
+
+
