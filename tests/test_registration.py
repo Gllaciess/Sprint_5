@@ -2,13 +2,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from locators.locators import Locators as locators
 from helpers.helpers import generate_email, generate_password, generate_name
+from constants import Urls
 
 
 class TestRegistration:
 
     def test_successful_registration(self, driver):
 
-        driver.get("https://stellarburgers.education-services.ru/register")
+        driver.get(Urls.REGISTER_URL)
 
         name = generate_name()
         email = generate_email()
@@ -20,10 +21,14 @@ class TestRegistration:
         driver.find_element(*locators.REGISTER_BUTTON).click()
 
         WebDriverWait(driver, 10).until(
-            EC.url_contains("stellarburgers.education-services.ru/login")
+            EC.url_changes(Urls.REGISTER_URL)
         )
 
-        assert "login" in driver.current_url
+        WebDriverWait(driver, 10).until(
+            EC.url_to_be(Urls.LOGIN_URL)
+        )
+
+        assert driver.current_url == Urls.LOGIN_URL
 
     def test_registration_invalid_password_error(self, driver):
 
