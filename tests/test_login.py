@@ -18,7 +18,7 @@ class TestLogin:
         driver.find_element(*locators.LOGIN_BUTTON).click()
 
         WebDriverWait(driver, 10).until(
-            EC.url_contains("stellarburgers.education-services.ru")
+            EC.url_to_be(Urls.BASE_URL)
         )
 
         assert "stellarburgers.education-services.ru" in driver.current_url
@@ -35,7 +35,7 @@ class TestLogin:
         driver.find_element(*locators.LOGIN_BUTTON).click()
 
         WebDriverWait(driver, 15).until(
-            EC.url_contains("stellarburgers.education-services.ru")
+            EC.url_to_be(Urls.BASE_URL)
         )
 
         assert "stellarburgers.education-services.ru" in driver.current_url
@@ -52,7 +52,7 @@ class TestLogin:
         driver.find_element(*locators.LOGIN_BUTTON).click()
 
         WebDriverWait(driver, 15).until(
-            EC.url_contains("stellarburgers.education-services.ru")
+            EC.url_to_be(Urls.BASE_URL)
         )
 
         assert "stellarburgers.education-services.ru" in driver.current_url
