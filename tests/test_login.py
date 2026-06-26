@@ -21,7 +21,7 @@ class TestLogin:
             EC.url_to_be(Urls.BASE_URL)
         )
 
-        assert "stellarburgers.education-services.ru" in driver.current_url
+        assert driver.current_url == Urls.BASE_URL
 
     def test_login_from_personal_account(self, driver, register_new_user):
 
@@ -38,8 +38,8 @@ class TestLogin:
             EC.url_to_be(Urls.BASE_URL)
         )
 
-        assert "stellarburgers.education-services.ru" in driver.current_url
-
+        assert driver.current_url == Urls.BASE_URL
+        
     def test_login_from_registration_form(self, driver, register_new_user):
 
         email, password = register_new_user
@@ -55,6 +55,6 @@ class TestLogin:
             EC.url_to_be(Urls.BASE_URL)
         )
 
-        assert "stellarburgers.education-services.ru" in driver.current_url
+        assert driver.current_url == Urls.BASE_URL
 
 

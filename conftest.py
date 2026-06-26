@@ -33,7 +33,6 @@ def register_new_user(driver):
 
     return email, password
 
-
 @pytest.fixture
 def login_user(driver, register_new_user):
 
@@ -45,7 +44,7 @@ def login_user(driver, register_new_user):
     driver.find_element(*locators.LOGIN_PASSWORD_INPUT).send_keys(password)
     driver.find_element(*locators.LOGIN_BUTTON).click()
 
-    WebDriverWait(driver, 15).until(
+    WebDriverWait(driver, 10).until(
         EC.url_contains("stellarburgers.education-services.ru")
     )
 

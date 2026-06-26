@@ -7,4 +7,7 @@
 # pytest
 # Google Chrome
 
-# Sprint_5
+# При последней проверке всех тестов перед сдачей проекта, было замечено:
+# tests/test_login.py::TestLogin::test_login_from_registration_form
+# tests/test_registration.py::TestRegistration::test_successful_registration
+# Но при отдельном запуске вышеуказанные тесты успешны
