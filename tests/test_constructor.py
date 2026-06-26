@@ -8,9 +8,12 @@ class TestConstructor:
     def test_switch_to_buns_tab(self, driver):
 
         driver.get(Urls.BASE_URL)
-        
-        element = driver.find_element(*locators.BUNS_TAB)
-        driver.execute_script("arguments[0].click();", element)
+
+        sauces_element = driver.find_element(*locators.SAUCES_TAB)
+        driver.execute_script("arguments[0].click();", sauces_element)
+
+        buns_element = driver.find_element(*locators.BUNS_TAB)
+        driver.execute_script("arguments[0].click();", buns_element)
 
         active_tab = driver.find_element(*locators.ACTIVE_TAB)
         assert "Булки" in active_tab.text
