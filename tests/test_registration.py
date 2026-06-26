@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from locators.locators import Locators as locators
 from helpers.helpers import generate_email, generate_password, generate_name
 from constants import Urls
+from data import TestData
 
 
 class TestRegistration:
