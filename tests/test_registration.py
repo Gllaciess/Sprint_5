@@ -12,9 +12,9 @@ class TestRegistration:
 
         driver.get(Urls.REGISTER_URL)
 
-        name = generate_name()
-        email = generate_email()
-        password = generate_password()
+        name = TestData.VALID_NAME
+        email = TestData.VALID_EMAIL
+        password = TestData.INVALID_PASSWORD
 
         driver.find_element(*locators.NAME_INPUT).send_keys(name)
         driver.find_element(*locators.EMAIL_INPUT).send_keys(email)
