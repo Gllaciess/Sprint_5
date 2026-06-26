@@ -45,8 +45,9 @@ def login_user(driver, register_new_user):
     driver.find_element(*locators.LOGIN_PASSWORD_INPUT).send_keys(password)
     driver.find_element(*locators.LOGIN_BUTTON).click()
 
-    import time
-    time.sleep(2)
+    WebDriverWait(driver, 15).until(
+        EC.url_contains("stellarburgers.education-services.ru")
+    )
 
     return email, password
 
