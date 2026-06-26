@@ -3,6 +3,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from locators.locators import Locators as locators
 from helpers.helpers import generate_email, generate_password, generate_name
 from constants import Urls
+from data import TestData
 
 
 class TestRegistration:
@@ -11,9 +12,9 @@ class TestRegistration:
 
         driver.get(Urls.REGISTER_URL)
 
-        name = generate_name()
-        email = generate_email()
-        password = generate_password()
+        name = TestData.VALID_NAME
+        email = TestData.VALID_EMAIL
+        password = TestData.VALID_PASSWORD
 
         driver.find_element(*locators.NAME_INPUT).send_keys(name)
         driver.find_element(*locators.EMAIL_INPUT).send_keys(email)
@@ -24,7 +25,7 @@ class TestRegistration:
             EC.url_changes(Urls.REGISTER_URL)
         )
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 15).until(
             EC.url_to_be(Urls.LOGIN_URL)
         )
 
@@ -34,9 +35,9 @@ class TestRegistration:
 
         driver.get("https://stellarburgers.education-services.ru/register")
 
-        name = generate_name()
-        email = generate_email()
-        password = "12345"
+        name = TestData.VALID_NAME
+        email = TestData.VALID_EMAIL
+        password = TestData.INVALID_PASSWORD
 
         driver.find_element(*locators.NAME_INPUT).send_keys(name)
         driver.find_element(*locators.EMAIL_INPUT).send_keys(email)
