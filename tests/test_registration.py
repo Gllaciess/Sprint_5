@@ -31,9 +31,9 @@ class TestRegistration:
 
         driver.get("https://stellarburgers.education-services.ru/register")
 
-        name = TestData.VALID_NAME
-        email = TestData.VALID_EMAIL
-        password = TestData.INVALID_PASSWORD
+        name = generate_name()
+        email = generate_email()
+        password = "12345"
 
         driver.find_element(*locators.NAME_INPUT).send_keys(name)
         driver.find_element(*locators.EMAIL_INPUT).send_keys(email)
