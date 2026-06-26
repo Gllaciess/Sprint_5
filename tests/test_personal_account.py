@@ -9,10 +9,6 @@ class TestPersonalAccount:
 
         driver.find_element(*locators.PERSONAL_ACCOUNT_BUTTON).click()
 
-        import time
-        time.sleep(2)
-        print("Текущий URL после клика на ЛК:", driver.current_url)
-
         WebDriverWait(driver, 10).until(
             EC.url_contains("stellarburgers.education-services.ru")
         )

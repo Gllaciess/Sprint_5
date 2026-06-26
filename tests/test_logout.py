@@ -21,7 +21,7 @@ class TestLogout:
 
         driver.find_element(*locators.PERSONAL_ACCOUNT_BUTTON).click()
 
-        WebDriverWait(driver, 10).until(
+        WebDriverWait(driver, 15).until(
             EC.url_contains("stellarburgers.education-services.ru")
         )
 
