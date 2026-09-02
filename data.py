@@ -6,5 +6,5 @@ class TestData:
     VALID_EMAIL = generate_email()
     VALID_PASSWORD = generate_password()
 
-    INVALID_PASSWORD = "123456"
+    INVALID_PASSWORD = "12345"
 
