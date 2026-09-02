@@ -29,7 +29,7 @@ class TestRegistration:
 
     def test_registration_invalid_password_error(self, driver):
 
-        driver.get("https://stellarburgers.education-services.ru/register")
+        driver.get(Urls.REGISTER_URL)
 
         name = generate_name()
         email = generate_email()
@@ -40,6 +40,9 @@ class TestRegistration:
         driver.find_element(*locators.PASSWORD_INPUT).send_keys(password)
         driver.find_element(*locators.REGISTER_BUTTON).click()
 
+        WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located(locators.PASSWORD_ERROR)
+        )
         error = driver.find_element(*locators.PASSWORD_ERROR)
         assert error.is_displayed()
         assert "Некорректный пароль" in error.text
